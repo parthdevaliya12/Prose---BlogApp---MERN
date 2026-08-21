@@ -17,7 +17,7 @@ export const createPost = async (req, res) => {
             category,
             content,
             image: req.file
-                ? "http://localhost:5000/uploads/" + req.file.filename
+                ? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`
                 : "",
             author: req.userId,
         });
@@ -187,9 +187,7 @@ export const editPost = async (req, res) => {
 
         // image update
         if (req.file) {
-            post.image =
-                "http://localhost:5000/uploads/" +
-                req.file.filename;
+            post.image = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
         }
 
         await post.save();

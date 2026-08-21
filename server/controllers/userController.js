@@ -389,8 +389,7 @@ export const updateProfile = async (req, res) => {
         }
 
         if (req.file) {
-            user.avatar =
-                "http://localhost:5000/uploads/" + req.file.filename;
+            user.avatar = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
         }
 
         await user.save();
