@@ -6,7 +6,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import axios from "axios";
 
 axios.defaults.baseURL = import.meta.env.DEV 
-  ? "" 
+  ? "http://localhost:5000" 
   : "https://prose-blogapp-mern.onrender.com";
 
 
