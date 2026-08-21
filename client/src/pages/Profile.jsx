@@ -70,7 +70,7 @@ export default function Profile() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        "http://localhost:5000/api/post/my-posts-count",
+        "/api/post/my-posts-count",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setTotalPosts(res.data.totalPosts);
@@ -83,7 +83,7 @@ export default function Profile() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        "http://localhost:5000/api/comment/my-comments-count",
+        "/api/comment/my-comments-count",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setTotalComments(res.data.totalComments);
@@ -96,7 +96,7 @@ export default function Profile() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        "http://localhost:5000/api/auth/saved-posts",
+        "/api/auth/saved-posts",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setSavedPosts(res.data.savedPosts || []);
@@ -125,7 +125,7 @@ export default function Profile() {
       }
 
       const res = await axios.put(
-        "http://localhost:5000/api/auth/profile/update",
+        "/api/auth/profile/update",
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -168,7 +168,7 @@ export default function Profile() {
       const token = localStorage.getItem("token");
 
       const res = await axios.put(
-        "http://localhost:5000/api/auth/change-password",
+        "/api/auth/change-password",
         { newPassword: passwordData.newPassword },
         { headers: { Authorization: `Bearer ${token}` } }
       );

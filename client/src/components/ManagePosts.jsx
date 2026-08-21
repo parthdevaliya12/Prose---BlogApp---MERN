@@ -27,7 +27,7 @@ export default function ManagePosts() {
   const getMyPosts = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/post/my-posts", {
+      const res = await axios.get("/api/post/my-posts", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPosts(res.data.posts);
@@ -41,7 +41,7 @@ export default function ManagePosts() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.delete(
-        `http://localhost:5000/api/post/delete/${id}`,
+        `/api/post/delete/${id}`,
         { headers: { Authorization: `Bearer ${token}` } },
       );
       toast.success(res.data.message);
@@ -77,7 +77,7 @@ export default function ManagePosts() {
       }
 
       const res = await axios.put(
-        `http://localhost:5000/api/post/edit/${editPostData.id}`,
+        `/api/post/edit/${editPostData.id}`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } },
       );

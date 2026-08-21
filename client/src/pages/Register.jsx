@@ -26,7 +26,7 @@ export default function Register() {
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:5000/api/auth/signup",
+        "/api/auth/signup",
         formData,
       );
       toast.success(res.data.message || "Account created successfully");
@@ -41,7 +41,7 @@ export default function Register() {
 
   const googleSignup = async (credentialResponse) => {
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/google", {
+      const res = await axios.post("/api/auth/google", {
         credential: credentialResponse.credential,
       });
       localStorage.setItem("token", res.data.token);

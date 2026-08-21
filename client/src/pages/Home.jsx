@@ -28,7 +28,7 @@ export default function Home() {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:5000/api/post/all");
+      const res = await axios.get("/api/post/all");
       setPosts(res.data.posts || []);
     } catch (error) {
       console.log(error);

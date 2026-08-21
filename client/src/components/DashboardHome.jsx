@@ -29,7 +29,7 @@ export default function DashboardHome() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        "http://localhost:5000/api/dashboard/dashboard-stats",
+        "/api/dashboard/dashboard-stats",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setStats(res.data);

@@ -44,7 +44,7 @@ export default function CreatePostAdmin() {
       setAiLoading(true);
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "http://localhost:5000/api/ai/generate",
+        "/api/ai/generate",
         { title: formData.title, category: formData.category },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -77,7 +77,7 @@ export default function CreatePostAdmin() {
       }
 
       const res = await axios.post(
-        "http://localhost:5000/api/post/create",
+        "/api/post/create",
         data,
         { headers: { Authorization: `Bearer ${token}` } }
       );

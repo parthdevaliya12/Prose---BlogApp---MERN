@@ -44,7 +44,7 @@ export default function CreateBlog() {
       const token = localStorage.getItem("token");
 
       const res = await axios.post(
-        "http://localhost:5000/api/ai/generate",
+        "/api/ai/generate",
         {
           title: formData.title,
           category: formData.category,
@@ -88,7 +88,7 @@ export default function CreateBlog() {
       }
 
       const res = await axios.post(
-        "http://localhost:5000/api/post/create",
+        "/api/post/create",
         data,
         {
           headers: {

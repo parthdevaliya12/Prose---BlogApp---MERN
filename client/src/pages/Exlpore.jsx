@@ -14,8 +14,8 @@ export default function Explore() {
     try {
       setLoading(true);
       const url = category
-        ? `http://localhost:5000/api/post/search?category=${encodeURIComponent(category)}`
-        : "http://localhost:5000/api/post/all";
+        ? `/api/post/search?category=${encodeURIComponent(category)}`
+        : "/api/post/all";
 
       const res = await axios.get(url);
       setPosts(res.data.posts || []);

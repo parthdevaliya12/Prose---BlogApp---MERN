@@ -38,7 +38,7 @@ export default function PostDetails() {
   const getSinglePost = async () => {
     try {
       // Fetch Post
-      const res = await axios.get(`http://localhost:5000/api/post/single/${id}`);
+      const res = await axios.get(`/api/post/single/${id}`);
       const fetchedPost = res.data.post;
       setPost(fetchedPost);
       setLikeCount(fetchedPost.likes?.length || 0);
@@ -49,7 +49,7 @@ export default function PostDetails() {
       }
 
       // Increment views
-      await axios.put(`http://localhost:5000/api/post/views/${id}`);
+      await axios.put(`/api/post/views/${id}`);
       
       // Fetch Related
       getRelatedPosts(fetchedPost._id);
@@ -64,7 +64,7 @@ export default function PostDetails() {
 
   const getRelatedPosts = async (postId) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/post/related/${postId}`);
+      const res = await axios.get(`/api/post/related/${postId}`);
       setRelatedPosts(res.data.posts);
     } catch (error) {
       console.log(error);
@@ -75,7 +75,7 @@ export default function PostDetails() {
     try {
       const token = localStorage.getItem("token");
       if (!token) return;
-      const res = await axios.get("http://localhost:5000/api/auth/saved-posts", {
+      const res = await axios.get("/api/auth/saved-posts", {
         headers: { Authorization: `Bearer ${token}` }
       });
       const savedIds = res.data.savedPosts.map(p => p._id);
@@ -94,7 +94,7 @@ export default function PostDetails() {
       setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
 
       await axios.post(
-        `http://localhost:5000/api/post/like/${id}`,
+        `/api/post/like/${id}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -113,7 +113,7 @@ export default function PostDetails() {
       setIsSaved(!isSaved);
 
       const res = await axios.post(
-        `http://localhost:5000/api/auth/save/${id}`,
+        `/api/auth/save/${id}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -127,7 +127,7 @@ export default function PostDetails() {
   const getComments = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/comment/all/${id}`,
+        `/api/comment/all/${id}`,
       );
       setComments(res.data.comments);
     } catch (error) {
@@ -145,7 +145,7 @@ export default function PostDetails() {
       if (!token) return toast.error("Please login first");
 
       const res = await axios.post(
-        `http://localhost:5000/api/comment/add/${id}`,
+        `/api/comment/add/${id}`,
         { comment },
         { headers: { Authorization: `Bearer ${token}` } },
       );
@@ -163,7 +163,7 @@ export default function PostDetails() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.delete(
-        `http://localhost:5000/api/comment/delete/${commentId}`,
+        `/api/comment/delete/${commentId}`,
         { headers: { Authorization: `Bearer ${token}` } },
       );
       toast.success(res.data.message);

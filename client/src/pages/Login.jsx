@@ -25,7 +25,7 @@ export default function Login() {
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "/api/auth/login",
         formData,
       );
       localStorage.setItem("token", res.data.token);
@@ -41,7 +41,7 @@ export default function Login() {
 
   const googleSuccess = async (credentialResponse) => {
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/google", {
+      const res = await axios.post("/api/auth/google", {
         credential: credentialResponse.credential,
       });
       localStorage.setItem("token", res.data.token);
